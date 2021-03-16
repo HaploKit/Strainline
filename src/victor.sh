@@ -329,9 +329,10 @@ perl -e 'open A,"haps.depth";<A>;my$alldepth=0;while(<A>){my@a=split;$alldepth+=
 open A,"haps.depth";<A>;while(<A>){my@a=split;my$d=$a[2]/$alldepth;print "$a[0]\t$a[1]\t$d\n";}close A; ' |
   sort -k3nr >haps.depth.sort
 
-perl -e ' my%id2seq;$/=">";open A,"haps.fa";<A>;while(<A>){chomp;my@a=split;$id2seq{$a[0]}=$a[1];}close A; $/="\n"; \
-open A,"haps.depth.sort";my$k=0;while(<A>){chomp;my@a=split;next if $a[-1]<$ENV{"min_abun"};\
+perl -e ' my%id2seq;$/=">";open A,"haps.fa";<A>;while(<A>){chomp;my@a=split;$id2seq{$a[0]}=$a[1];}close A;
+$/="\n"; open A,"haps.depth.sort";my$k=0;while(<A>){chomp;my@a=split;next if $a[-1]<$ENV{"min_abundance"};
 my$abun=sprintf "%.3f",$a[-1]; $k+=1;print ">hap$k;abundance=$abun\n$id2seq{$a[0]}\n";}close A; ' >haplotypes.final.fa
+
 
 ## Done ##
 cd ..
