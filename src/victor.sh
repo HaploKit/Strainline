@@ -254,7 +254,7 @@ basepath=$(dirname $0)
 if [ ! -d $outdir ]; then
   mkdir $outdir
 else
-  echo $outdir 'already exists, please use a new one, exiting...'
+  echo Directory "$outdir" 'already exists, please use a new one, exiting...'
   exit
 fi
 
