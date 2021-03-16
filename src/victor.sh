@@ -27,14 +27,14 @@ function print_help() {
 #  echo "	--perIdentity INT:                Percent identity for haplcomputation. (default: 2)"
   echo "	--minAbun FLOAT:                  Minimum abundance for filtering haplotypes (default: 0.02)"
   echo "	--rmMisassembly BOOL:             Break contigs at potential misassembled positions (default: False)"
-  echo "	--threads INT, -t INT:            Number of processes to run in parallel (default: number of cores)."
+  echo "	--threads INT, -t INT:            Number of processes to run in parallel (default: 8)."
   echo "	--help, -h:                       Print this help message."
   exit 1
 }
 
 #Set options to default values
 input_fa=""
-threads=$(nproc)
+threads=8
 outdir="out/"
 
 min_trimmed_len=1000 #3000 for SARS-CoV-2 datasets
@@ -216,7 +216,7 @@ while [[ "$1" != "" ]]; do
       ;;
     esac
     ;;
-  "--threads")
+  "--threads" | "-t")
     case "$2" in
     "")
       echo "Error: $1 expects an argument"
@@ -264,7 +264,7 @@ cd $outdir || exit
 ln -fs $input_fa reads.fasta
 fasta2DAM reads.dam reads
 DBsplit -s256 -x$min_trimmed_len reads.dam # -x: Trimmed DB has reads >= this threshold.
-mkdir tmp || exit 
+mkdir tmp || exit
 HPC.daligner reads.dam -T$threads | bash
 #HPC.daligner reads.dam -P./tmp -T$threads | bash
 daccord -t$threads reads.las reads.dam >corrected.0.fa
