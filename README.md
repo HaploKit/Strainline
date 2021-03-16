@@ -11,17 +11,17 @@ Victor relies on the following dependencies:
 - [daccord](https://github.com/gt1/daccord)
 - [samtools](http://www.htslib.org/)
 - [spoa](https://github.com/rvaser/spoa)
-- [depth xxx]()
+- `jgi_summarize_bam_contig_depths` program from [metabat2](https://bitbucket.org/berkeleylab/metabat/src/master/)
 - Python3
 
 
-To install Victor, firstly, it is recommended to install the dependencies through [Conda](https://docs.conda.io/en/latest/).
+To run Victor, firstly, it is recommended to install the dependencies through [Conda](https://docs.conda.io/en/latest/).
 Also, [DAZZ_DB](https://github.com/thegenemyers/DAZZ_DB) and [DALIGNER](https://github.com/thegenemyers/DALIGNER) 
 are required before running `daccord`.
 ```
 conda create -n victor
 conda activate victor
-conda install -c bioconda minimap2 samtools dazz_db daligner
+conda install -c bioconda minimap2 samtools dazz_db daligner metabat2
 ```
 Then, install `daccord` and `spoa` following the instructions in their corresponding github pages.
 Make sure that `daccord -h` and `spoa -h` can work successfully.
