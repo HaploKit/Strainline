@@ -258,8 +258,9 @@ else
   exit
 fi
 
-cd $outdir || exit
 input_fa=$(readlink -f $input_fa)
+cd $outdir || exit
+
 ln -fs $input_fa reads.fasta
 fasta2DAM reads.dam reads
 DBsplit -s256 -x$min_trimmed_len reads.dam # -x: Trimmed DB has reads >= this threshold.
