@@ -35,7 +35,7 @@ function print_help() {
 #Set options to default values
 input_fa=""
 threads=$(nproc)
-outdir="."
+outdir="out/"
 
 min_trimmed_len=1000 #3000 for SARS-CoV-2 datasets
 
@@ -259,6 +259,7 @@ else
 fi
 
 cd $outdir || exit
+input_fa=$(readlink -f $input_fa)
 ln -fs $input_fa reads.fasta
 fasta2DAM reads.dam reads
 DBsplit -s256 -x$min_trimmed_len reads.dam # -x: Trimmed DB has reads >= this threshold.
