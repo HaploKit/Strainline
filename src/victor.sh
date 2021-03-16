@@ -264,8 +264,9 @@ cd $outdir || exit
 ln -fs $input_fa reads.fasta
 fasta2DAM reads.dam reads
 DBsplit -s256 -x$min_trimmed_len reads.dam # -x: Trimmed DB has reads >= this threshold.
-mkdir -p tmp
-HPC.daligner reads.dam -P./tmp -T$threads | bash
+mkdir tmp || exit 
+HPC.daligner reads.dam -T$threads | bash
+#HPC.daligner reads.dam -P./tmp -T$threads | bash
 daccord -t$threads reads.las reads.dam >corrected.0.fa
 echo 'Step1: read error correction. Finished.'
 
