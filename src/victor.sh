@@ -18,7 +18,7 @@ function print_help() {
   echo ""
   echo "	Options:"
   echo "	--minTrimmedLen INT:              Minimum trimmed read length. (default: 1000)"
-  echo "	--topk INT:                       Choose top k seed reads. (default: 200)"
+  echo "	--topk INT, -k INT:                       Choose top k seed reads. (default: 200)"
   echo "	--minOvlpLen INT:                 Minimum read overlap length. (default: 1000)"
   echo "	--minIdentity FLOAT:              Minimum identity of overlaps. (default: 0.99)"
   echo "	--minSeedLen INT:                 Minimum seed read length. (default: 3000)"
@@ -120,7 +120,7 @@ while [[ "$1" != "" ]]; do
       ;;
     esac
     ;;
-  "--topk")
+  "--topk" | "-k")
     case "$2" in
     "")
       echo "Error: $1 expects an argument"
