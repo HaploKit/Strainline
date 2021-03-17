@@ -41,7 +41,7 @@ Input:
 
 Options:
 	--minTrimmedLen INT:              Minimum trimmed read length. (default: 1000)
-	--topk INT:                       Choose top k seed reads. (default: 200)
+	--topk INT, -k INT:               Choose top k seed reads. (default: 100)
 	--minOvlpLen INT:                 Minimum read overlap length. (default: 1000)
 	--minIdentity FLOAT:              Minimum identity of overlaps. (default: 0.99)
 	--minSeedLen INT:                 Minimum seed read length. (default: 3000)
@@ -60,7 +60,7 @@ One can test the `victor.sh` program using the small PacBio CLR reads file `exam
 - PacBio CLR reads
 ```
 cd example
-../src/victor.sh -i reads.fa -o out -p pb -t 32
+../src/victor.sh -i reads.fa -o out -p pb -k 20 -t 32
 ```
 
 - ONT reads
