@@ -267,7 +267,13 @@ DBsplit -s256 -x$min_trimmed_len reads.dam # -x: Trimmed DB has reads >= this th
 mkdir tmp || exit
 #HPC.daligner reads.dam -T$threads | bash #return core-dump error if using all cores
 HPC.daligner reads.dam -e0.85 -P./tmp -T$threads | bash
-daccord -t$threads reads.las reads.dam >corrected.0.fa
+#  daccord -t$threads reads.las reads.dam >corrected.0.fa
+touch corrected.0.fa
+for las_file in reads.*las;
+do
+  daccord -t$threads $las_file reads.dam >>corrected.0.fa
+done
+
 echo 'Step1: read error correction. Finished.'
 
 ##############################################
