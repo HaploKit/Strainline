@@ -338,4 +338,4 @@ my$abun=sprintf "%.3f",$a[-1]; $k+=1;print ">hap$k;abundance=$abun\n$id2seq{$a[0
 cd ..
 ln -fs ./filter_by_abun/haplotypes.final.fa .
 echo 'All steps finished successfully.'
-echo 'The final haplotypes are saved here: '$outdir'/haplotypes.final.fa'
+echo 'The final haplotypes and their relative abundances are saved here: '$outdir'/haplotypes.final.fa'
