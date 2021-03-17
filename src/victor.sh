@@ -53,7 +53,7 @@ iter=2
 min_divergence=0.01
 
 percent_identity=97
-min_abun=0.02 #TODO
+min_abun=0.02 #
 rm_misassembly="False"
 correct_err="True"
 
