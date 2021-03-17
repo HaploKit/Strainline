@@ -1,6 +1,6 @@
 # Victor
 ## Description
-Full-length de novo <u>vi</u>ral haplotype re<u>c</u>ons<u>t</u>ruction from noisy l<u>o</u>ng <u>r</u>eads
+Full-length de novo ***vi***ral haplotype reconstruction from noisy l***o***ng reads
 
 
 
