@@ -1,6 +1,6 @@
 # Victor
 ## Description
-Full-length de novo **vi**ral haplotype re**c**ons**t**ruction from noisy l**o**ng **r**eads
+**Victor** is a novel approach for full-length *de novo* **vi**ral haplotype re**c**ons**t**ruction from noisy l**o**ng **r**eads
 
 
 
