@@ -18,7 +18,7 @@ function print_help() {
   echo ""
   echo "	Options:"
   echo "	--minTrimmedLen INT:              Minimum trimmed read length. (default: 1000)"
-  echo "	--topk INT, -k INT:                       Choose top k seed reads. (default: 200)"
+  echo "	--topk INT, -k INT:               Choose top k seed reads. (default: 100)"
   echo "	--minOvlpLen INT:                 Minimum read overlap length. (default: 1000)"
   echo "	--minIdentity FLOAT:              Minimum identity of overlaps. (default: 0.99)"
   echo "	--minSeedLen INT:                 Minimum seed read length. (default: 3000)"
@@ -39,7 +39,7 @@ outdir="out/"
 
 min_trimmed_len=1000 #3000 for SARS-CoV-2 datasets
 
-topk=200
+topk=100
 platform="pb"
 min_ovlp_len=1000
 min_identity=0.99
