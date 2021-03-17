@@ -27,6 +27,7 @@ function print_help() {
 #  echo "	--perIdentity INT:                Percent identity for haplcomputation. (default: 2)"
   echo "	--minAbun FLOAT:                  Minimum abundance for filtering haplotypes (default: 0.02)"
   echo "	--rmMisassembly BOOL:             Break contigs at potential misassembled positions (default: False)"
+  echo "	--correctErr BOOL:                Perform error correction for input reads (default: True)"
   echo "	--threads INT, -t INT:            Number of processes to run in parallel (default: 8)."
   echo "	--help, -h:                       Print this help message."
   exit 1
@@ -54,6 +55,7 @@ min_divergence=0.01
 percent_identity=97
 min_abun=0.02 #TODO
 rm_misassembly="False"
+correct_err="True"
 
 #Print help if no argument specified
 if [[ "$1" == "" ]]; then
@@ -216,6 +218,18 @@ while [[ "$1" != "" ]]; do
       ;;
     esac
     ;;
+  "--correctErr")
+    case "$2" in
+    "")
+      echo "Error: $1 expects an argument"
+      exit 1
+      ;;
+    *)
+      correct_err="$2"
+      shift 2
+      ;;
+    esac
+    ;;
   "--threads" | "-t")
     case "$2" in
     "")
@@ -251,30 +265,36 @@ basepath=$(dirname $0)
 ##############################################
 ######## Step1: read error correction ########
 ##############################################
-if [ ! -d $outdir ]; then
-  mkdir $outdir
-else
-  echo Directory \'$outdir\' 'already exists, please use a new one, exiting...'
-  exit
-fi
+#if [ ! -d $outdir ]; then
+#  mkdir $outdir
+#else
+#  echo Directory \'$outdir\' 'already exists, please use a new one, exiting...'
+#  exit
+#fi
+mkdir -p $outdir
 
 input_fa=$(readlink -f $input_fa)
 cd $outdir || exit
 
 ln -fs $input_fa reads.fasta
-fasta2DAM reads.dam reads
-DBsplit -s256 -x$min_trimmed_len reads.dam # -x: Trimmed DB has reads >= this threshold.
-mkdir tmp || exit
-#HPC.daligner reads.dam -T$threads | bash #return core-dump error if using all cores
-HPC.daligner reads.dam -e0.85 -P./tmp -T$threads | bash
-#  daccord -t$threads reads.las reads.dam >corrected.0.fa
-touch corrected.0.fa
-for las_file in reads.*las;
-do
-  daccord -t$threads $las_file reads.dam >>corrected.0.fa
-done
 
-echo 'Step1: read error correction. Finished.'
+if [[ $correct_err == "True" ]];then
+  fasta2DAM reads.dam reads
+  DBsplit -s256 -x$min_trimmed_len reads.dam # -x: Trimmed DB has reads >= this threshold.
+  mkdir tmp || exit
+  #HPC.daligner reads.dam -T$threads | bash #return core-dump error if using all cores
+  HPC.daligner reads.dam -e0.85 -P./tmp -T$threads | bash
+  #  daccord -t$threads reads.las reads.dam >corrected.0.fa
+  touch corrected.0.fa
+  for las_file in reads.*las;
+  do
+    daccord -t$threads $las_file reads.dam >>corrected.0.fa
+  done
+
+  echo 'Step1: read error correction. Finished.'
+else
+  echo 'Skip Step1, do not perform error correction.'
+fi
 
 ##############################################
 ########### Step2: read clustering ###########
