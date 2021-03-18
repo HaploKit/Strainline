@@ -46,7 +46,8 @@ min_ovlp_len=1000
 min_identity=0.99
 o=30
 r=0.8
-max_ovlps=10000
+#max_ovlps=10000 #TODO,reads are already corrected, so maybe use 1000?
+max_ovlps=1000
 min_sread_len=3000
 
 iter=2
