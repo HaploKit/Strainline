@@ -328,7 +328,7 @@ python $basepath/rm_redundant_genomes.py $fa_list_file $min_divergence . $thread
 if [[ $rm_misassembly == "True" ]]; then
   cat haplotypes.fa|perl -ne 'BEGIN{$head;$i=0;}if(/^>/){$head=">contig$i";}else{if (length($_) >100){print "$head\n$_";$i+=1;} }' >tmp.fa
   num_contig=`cat tmp.fa |grep ">"|wc -l`
-  fa_read=../corrected.0.fa #corrected reads
+  fa_read=corrected.0.fa #corrected reads
   python $basepath/rm_misassembly.py $fa_read  tmp.fa rmMisassemly $threads  $num_contig
   cat rmMisassemly/contig.*.fa >haplotypes.rm_misassembly.fa
 elif [[ $rm_misassembly == "False" ]]; then
