@@ -37,6 +37,8 @@ def cal_genome_divergence(param):
     fa2_len = fasta_len(fa2)
 
     # number of bases which are covered in fa1 or fa2, which can be also obtained from paf file
+    # this may be != fa1_len - ovlp_len (because of indels in overlap)
+    # and != fa1_len - matched_len (because of mismatch bases not involved in matched_len)
     fa1_uniq_ovlplen = os.popen("minimap2 -ax asm20 -t 1 {} {} 2>/dev/null|samtools sort - |samtools depth -|wc -l".
                                 format(fa1, fa2)).read().strip()
     fa2_uniq_ovlplen = os.popen("minimap2 -ax asm20 -t 1 {} {} 2>/dev/null|samtools sort - |samtools depth -|wc -l".

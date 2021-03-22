@@ -145,7 +145,7 @@ def get_consensus(param):
 
     #sort reads before run spoa, already sorted in get_clusters()
     consensus = os.popen('spoa -l 0 {}'.format(cluster_fa)).read()
-    # consensus = os.popen('abpoa -m 1 {}'.format(cluster_fa)).read() #less computational cost
+    # consensus = os.popen('abpoa -m 1 {}'.format(cluster_fa)).read() #less computational cost,but result seems not good as spoa
 
     consensus = consensus.strip().split('\n')[-1]
     header = os.popen('cat {}|head -1'.format(cluster_fa)).read()
