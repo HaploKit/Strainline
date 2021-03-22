@@ -243,8 +243,8 @@ def evaluate_assembly(contig_file, ground_truth, bwa_mode, max_edit, freq_truth,
             freq_truth, ab_est, truth2aln, contigs, ground_truth, min_HC,
             freq_out)
         if av_rel_err >= 0:
-            print("average relative abundance error: {:.1f}%".format(av_rel_err))
-            print("average absolute abundance error: {:.1f}%".format(av_abs_err))
+            print("average relative abundance error: {:.2f}%".format(av_rel_err))
+            print("average absolute abundance error: {:.2f}%".format(av_abs_err))
             print("median abundance error: {:.1f}%\n".format(100*median))
     else:
         av_rel_err = -1
@@ -333,8 +333,9 @@ def check_frequencies(freq_truth, ab_est, truth2aln, contigs, ground_truth,
         return -1, -1, -1
     average_rel_err = sum(err_list)/len(err_list)*100
     average_abs_err = sum(abs_err_list)/len(abs_err_list)
-    print("average rel error: {:.1f}%".format(average_rel_err))
-    print("average abs error: {:.1f}%".format(average_abs_err))
+    print("average rel error: {:.2f}%".format(average_rel_err))
+    print("average abs error: {:.2f}%".format(average_abs_err))
+    print("Latex abs/rel error: {:.2f}% & {:.2f} \cr".format(average_abs_err,average_rel_err))
     print("min error: {:.3f}".format(min(err_list)))
     print("max error: {:.3f}".format(max(err_list)))
     median = np.median(np.array(sorted(err_list)))
