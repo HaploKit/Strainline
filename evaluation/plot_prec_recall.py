@@ -5,15 +5,19 @@ import pandas as pd
 import numpy as np
 import seaborn as sns
 import argparse
+#
+# INDEX = {
+#     "savage" : 1,
+#     "virus-vg" : 2,
+#     "vg-flow": 8,
+#     "abayesqr" : 5,
+#     "pehaplo" : 7,
+#     "predicthaplo" : 3,
+#     "shorah" : 4
+# }
 
 INDEX = {
-    "savage" : 1,
-    "virus-vg" : 2,
-    "vg-flow": 8,
-    "abayesqr" : 5,
-    "pehaplo" : 7,
-    "predicthaplo" : 3,
-    "shorah" : 4
+    "haplotypes.final.fa" : 1,
 }
 
 FORMAT = ["method", "contig_id", "truth_id", "aln_len", "edit_dist",
