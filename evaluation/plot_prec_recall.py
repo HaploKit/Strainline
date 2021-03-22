@@ -82,6 +82,7 @@ def compute_stats(data, max_edit_perc, ref_count, ncontigs):
         f_score = 2 * precision * recall /  (precision + recall)
     else:
         f_score = 0
+    print(precision,recall,f_score)
     return precision, recall, f_score
 
 
