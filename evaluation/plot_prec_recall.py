@@ -33,7 +33,7 @@ def main():
 
     ref_count = args.num_strains
     dist_bins = range(0, 6)
-    data = pd.read_csv(args.assignments, names=FORMAT,sep=" ")
+    data = pd.read_csv(args.assignments, names=FORMAT,sep="\t")
     print(data)
     sys.exit(0)
     sns.set(style="ticks", context="paper", palette="muted")
