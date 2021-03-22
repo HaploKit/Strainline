@@ -50,7 +50,7 @@ def main():
         if ncontigs == 0:
             continue
         subdata = data.loc[data["method"] == method_file]
-        # print(subdata)
+        print(subdata)
         stats = [compute_stats(subdata, dist, ref_count, ncontigs) for dist in dist_bins]
         precision = [x[0] for x in stats]
         recall = [x[1] for x in stats]
