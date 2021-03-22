@@ -17,7 +17,8 @@ import argparse
 # }
 
 INDEX = {
-    "haplotypes.final.fa" : 1,
+    "savage" : 1,
+    "haplotypes.final.fa" : 2,
 }
 
 FORMAT = ["method", "contig_id", "truth_id", "aln_len", "edit_dist",
@@ -32,7 +33,7 @@ def main():
 
     ref_count = args.num_strains
     dist_bins = range(0, 6)
-    data = pd.read_csv(args.assignments, names=FORMAT,sep="\t")
+    data = pd.read_csv(args.assignments, names=FORMAT,sep=" ")
     # print(data)
     sns.set(style="ticks", context="paper", palette="muted")
     fig, axs = plt.subplots(1, 3, sharey=True, figsize=(10, 3), tight_layout=True)
