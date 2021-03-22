@@ -369,7 +369,7 @@ do
 
   perl -e ' my%id2seq;$/=">";open A,"haps.fa";<A>;while(<A>){chomp;my@a=split;$id2seq{$a[0]}=$a[1];}close A;
   $/="\n"; open A,"haps.depth.sort";my$k=0;while(<A>){chomp;my@a=split;next if $a[-1]<$ENV{"min_abundance"};
-  my$abun=sprintf "%.3f",$a[-1];my$cov=sprintf "%.0f",$a[-2]; $k+=1;print ">hap$k $cov freq=$abun\n$id2seq{$a[0]}\n";}close A; ' >haplotypes.final.fa
+  my$abun=sprintf "%.3f",$a[-1];my$cov=sprintf "%.0f",$a[-2]; $k+=1;print ">hap$k $cov"."x freq=$abun\n$id2seq{$a[0]}\n";}close A; ' >haplotypes.final.fa
 done
 #TODO, after filtering, is it necessary to recompute the abundance of haplotypes ? yes, see for loop
 
