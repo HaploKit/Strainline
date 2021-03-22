@@ -34,7 +34,8 @@ def main():
     ref_count = args.num_strains
     dist_bins = range(0, 6)
     data = pd.read_csv(args.assignments, names=FORMAT,sep=" ")
-    # print(data)
+    print(data)
+    sys.exit(0)
     sns.set(style="ticks", context="paper", palette="muted")
     fig, axs = plt.subplots(1, 3, sharey=True, figsize=(10, 3), tight_layout=True)
     axs[0].set_title("Precision")
