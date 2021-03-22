@@ -35,7 +35,6 @@ def main():
     dist_bins = range(0, 6)
     data = pd.read_csv(args.assignments, names=FORMAT,sep="\t")
     print(data)
-    sys.exit(0)
     sns.set(style="ticks", context="paper", palette="muted")
     fig, axs = plt.subplots(1, 3, sharey=True, figsize=(10, 3), tight_layout=True)
     axs[0].set_title("Precision")
