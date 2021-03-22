@@ -5,7 +5,8 @@ set -e
 ##############################################
 ### Step4: low frequent haplotypes removal ###
 ##############################################
-min_abun=$1 #0.02
+fa_read=$1 #corrected read fasta
+min_abun=$2 #0.02
 
 percent_identity=97
 threads=36
@@ -13,7 +14,7 @@ export min_abundance=$min_abun
 
 mkdir -p filter_by_abun2
 cd filter_by_abun2 || exit
-fa_read=../corrected.0.fa #corrected reads
+#fa_read=../corrected.0.fa #corrected reads
 
 for i in {1..2};
 do
@@ -35,5 +36,6 @@ do
   my$abun=sprintf "%.3f",$a[-1];my$cov=sprintf "%.0f",$a[-2]; $k+=1;print ">hap$k $cov"."x freq=$abun\n$id2seq{$a[0]}\n";}close A; ' >haplotypes.final.fa
 done
 
+cp haplotypes.final.fa ../victor.fa
 
 echo 'All steps finished successfully.'
