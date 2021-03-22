@@ -71,7 +71,7 @@ def compute_stats(data, max_edit_perc, ref_count, ncontigs):
     true_positives = set()
     matched_ref = set()
     for index, record in data.iterrows():
-        # print(record)
+        print(record)
         edit_perc = record['edit_dist'] / record['aln_len'] * 100
         if edit_perc <= max_edit_perc:
             true_positives.add(record['contig_id'])
