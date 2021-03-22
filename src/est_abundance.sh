@@ -5,7 +5,8 @@ set -e
 ##############################################
 ### Step4: low frequent haplotypes removal ###
 ##############################################
-fa_read=$1 #corrected read fasta
+old_hap_fa=$1
+corrected_reads_fa=$1 #corrected read fasta
 min_abun=$2 #0.02
 
 percent_identity=97
@@ -19,11 +20,11 @@ cd filter_by_abun2 || exit
 for i in {1..2};
 do
   if [[ $i == 1 ]];then
-    cat ../haplotypes.rm_misassembly.fa | perl -ne 'BEGIN{$i=1;}if(/^>/){print ">contig_$i\n";$i+=1;}else{print;}' >haps.fa
+    cat $old_hap_fa | perl -ne 'BEGIN{$i=1;}if(/^>/){print ">contig_$i\n";$i+=1;}else{print;}' >haps.fa
   else
     cat haplotypes.final.fa | perl -ne 'BEGIN{$i=1;}if(/^>/){print ">contig_$i\n";$i+=1;}else{print;}' >haps.fa
   fi
-  minimap2 -a --secondary=no -t $threads haps.fa $fa_read | samtools view -F 3584 -b -t $threads | samtools sort - >haps.bam
+  minimap2 -a --secondary=no -t $threads haps.fa $corrected_reads_fa | samtools view -F 3584 -b -t $threads | samtools sort - >haps.bam
 
   jgi_summarize_bam_contig_depths haps.bam --percentIdentity $percent_identity --outputDepth haps.depth
 
