@@ -56,8 +56,8 @@ def main():
         freq = stats[2]
         freq_abs = stats[3]
         if freq >= 0:
-            freq_line += "\t{:.1f}".format(freq)
-            freq_line2 += "\t{:.1f}".format(freq_abs)
+            freq_line += "\t{:.2f}".format(freq)
+            freq_line2 += "\t{:.2f}".format(freq_abs)
         else:
             freq_line += "\t-"
             freq_line2 += "\t-"
