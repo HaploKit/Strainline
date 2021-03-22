@@ -45,7 +45,7 @@ def main():
     for method in args.contigs:
         print(method)
         method_file = method.split('/')[-1]
-        method_name = method_file.rstrip(".fasta")
+        method_name = method_file.rstrip(".fa")
         color = sns.color_palette()[INDEX[method_name]]
         ncontigs = fasta_len(method)
         if ncontigs == 0:
