@@ -6,8 +6,8 @@ set -e
 ### Step4: low frequent haplotypes removal ###
 ##############################################
 old_hap_fa=$1
-corrected_reads_fa=$1 #corrected read fasta
-min_abun=$2 #0.02
+corrected_reads_fa=$2 #corrected read fasta
+min_abun=$3 #0.02
 
 percent_identity=97
 threads=36
