@@ -335,7 +335,7 @@ def check_frequencies(freq_truth, ab_est, truth2aln, contigs, ground_truth,
     average_abs_err = sum(abs_err_list)/len(abs_err_list)
     print("average rel error: {:.2f}%".format(average_rel_err))
     print("average abs error: {:.2f}%".format(average_abs_err))
-    print("Latex abs/rel error: {:.2f}% & {:.2f} \cr".format(average_abs_err,average_rel_err))
+    print("Latex abs/rel error: {:.2f} & {:.2f} \cr".format(average_abs_err,average_rel_err))
     print("min error: {:.3f}".format(min(err_list)))
     print("max error: {:.3f}".format(max(err_list)))
     median = np.median(np.array(sorted(err_list)))
