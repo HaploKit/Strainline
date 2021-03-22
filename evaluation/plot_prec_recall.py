@@ -17,8 +17,9 @@ import argparse
 # }
 
 INDEX = {
-    "savage" : 2,
-    "haplotypes.final" : 1,
+    "victor" : 1,
+    "canu" : 2,
+    "wtdgb2" : 3,
 }
 
 FORMAT = ["method", "contig_id", "truth_id", "aln_len", "edit_dist",
