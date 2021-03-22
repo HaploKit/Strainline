@@ -76,6 +76,7 @@ def compute_stats(data, max_edit_perc, ref_count, ncontigs):
         if edit_perc <= max_edit_perc:
             true_positives.add(record['contig_id'])
             matched_ref.add(record['truth_id'])
+    print(matched_ref)
     recall = len(matched_ref) / ref_count
     precision = len(true_positives) / ncontigs if ncontigs > 0 else 0
     if precision + recall > 0:
