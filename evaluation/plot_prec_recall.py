@@ -63,7 +63,7 @@ def main():
         ax.set_xticks(dist_bins)
         ax.set_xlabel("max % edit distance")
     plt.legend(loc='upper center', bbox_to_anchor=(1.35, 0.75), shadow=True, ncol=1)
-    plt.savefig('prec_recall_fscore.eps')
+    plt.savefig('prec_recall_fscore.png')
     plt.show()
     return
 
