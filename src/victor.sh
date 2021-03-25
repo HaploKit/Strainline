@@ -22,6 +22,7 @@ function print_help() {
   echo "	--minOvlpLen INT:                 Minimum read overlap length. (default: 1000)"
   echo "	--minIdentity FLOAT:              Minimum identity of overlaps. (default: 0.99)"
   echo "	--minSeedLen INT:                 Minimum seed read length. (default: 3000)"
+  echo "	--maxOH INT:                      Maximum overhang length allowed for overlaps. (default: 30)"
   echo "	--iter INT:                       Number of iterations for contig extension. (default: 2)"
   echo "	--minDiv FLOAT:                   Minimum global divergence for merging haplotypes. (default: 0.01)"
 #  echo "	--perIdentity INT:                Percent identity for haplcomputation. (default: 2)"
@@ -167,6 +168,18 @@ while [[ "$1" != "" ]]; do
       ;;
     *)
       min_sread_len="$2"
+      shift 2
+      ;;
+    esac
+    ;;
+  "--maxOH")
+    case "$2" in
+    "")
+      echo "Error: $1 expects an argument"
+      exit 1
+      ;;
+    *)
+      o="$2"
       shift 2
       ;;
     esac
