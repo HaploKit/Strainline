@@ -64,8 +64,9 @@ def cal_genome_divergence(param):
 
 
 if __name__ == '__main__':
-    fa_list_file, min_divergence, outdir, threads,max_local_divergence = sys.argv[1:]
-    min_divergence = float(min_divergence)
+    fa_list_file, max_global_divergence, outdir, threads,max_local_divergence = sys.argv[1:]
+    max_global_divergence = float(max_global_divergence)
+    max_local_divergence = float(max_local_divergence)
     fa_list = []
     with open(fa_list_file) as fr:
         for line in fr:
@@ -91,7 +92,7 @@ if __name__ == '__main__':
         elif contained == 2:
             if fa2 in final_fastas:
                 del final_fastas[fa2]
-        elif global_divergence < min_divergence:
+        elif global_divergence < max_global_divergence:
             if fasta_len(fa1) > fasta_len(fa2):
                 if fa2 in final_fastas:
                     del final_fastas[fa2]

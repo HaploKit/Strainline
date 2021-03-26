@@ -26,7 +26,7 @@ function print_help() {
   echo "	--iter INT:                       Number of iterations for contig extension. (default: 2)"
   echo "	--maxGD FLOAT:                    Maximum global divergence allowed for merging haplotypes. (default: 0.01)"
   echo "	--maxLD FLOAT:                    Maximum local divergence allowed for merging haplotypes. (default: 0.001)"
-#  echo "	--perIdentity INT:                Percent identity for haplcomputation. (default: 2)"
+#  echo "	--perIdentity INT:                Percent identity for haplotype abundacne computation. (default: 97)"
   echo "	--minAbun FLOAT:                  Minimum abundance for filtering haplotypes (default: 0.02)"
   echo "	--rmMisassembly BOOL:             Break contigs at potential misassembled positions (default: False)"
   echo "	--correctErr BOOL:                Perform error correction for input reads (default: True)"
@@ -40,7 +40,7 @@ input_fa=""
 threads=8
 outdir="out/"
 
-min_trimmed_len=1000 #3000 for SARS-CoV-2 datasets
+min_trimmed_len=1000
 
 topk=100
 platform="pb"
@@ -54,7 +54,9 @@ min_sread_len=3000
 
 iter=2
 max_global_divergence=0.01
-max_local_divergence=0.001 #for CLR, 0.01 for ONT
+
+#TODO: add if else
+max_local_divergence=0.001 #for CLR, 0.01 for ONT. #SARS-CoV-2 / (5-HIV different depth) results in paper use 0.01,
 
 percent_identity=97
 min_abun=0.02 #
