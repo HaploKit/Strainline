@@ -54,7 +54,7 @@ def cal_genome_divergence(param):
     fa2_oh = fa2_len - ovlp_len
     min_oh = 5
     min_local_divergence = 0.001 #pacbio clr
-    min_local_divergence = 0.01 #for test, maybe for ont TODO
+    # min_local_divergence = 0.01 #for test, maybe for ont TODO
     if fa1_oh <= min_oh and local_divergence < min_local_divergence:
         contained = 1  # fa1 is contained contig
     elif fa2_oh <= min_oh and local_divergence < min_local_divergence:
