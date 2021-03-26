@@ -24,7 +24,8 @@ function print_help() {
   echo "	--minSeedLen INT:                 Minimum seed read length. (default: 3000)"
   echo "	--maxOH INT:                      Maximum overhang length allowed for overlaps. (default: 30)"
   echo "	--iter INT:                       Number of iterations for contig extension. (default: 2)"
-  echo "	--maxDiv FLOAT:                   Maximum global divergence for merging haplotypes. (default: 0.01)"
+  echo "	--maxGD FLOAT:                    Maximum global divergence allowed for merging haplotypes. (default: 0.01)"
+  echo "	--maxLD FLOAT:                    Maximum local divergence allowed for merging haplotypes. (default: 0.001)"
 #  echo "	--perIdentity INT:                Percent identity for haplcomputation. (default: 2)"
   echo "	--minAbun FLOAT:                  Minimum abundance for filtering haplotypes (default: 0.02)"
   echo "	--rmMisassembly BOOL:             Break contigs at potential misassembled positions (default: False)"
@@ -52,7 +53,8 @@ max_ovlps=1000
 min_sread_len=3000
 
 iter=2
-max_divergence=0.01
+max_global_divergence=0.01
+max_local_divergence=0.001 #for CLR, 0.01 for ONT
 
 percent_identity=97
 min_abun=0.02 #
@@ -196,14 +198,26 @@ while [[ "$1" != "" ]]; do
       ;;
     esac
     ;;
-  "--maxDiv")
+  "--maxGD")
     case "$2" in
     "")
       echo "Error: $1 expects an argument"
       exit 1
       ;;
     *)
-      max_divergence="$2"
+      max_global_divergence="$2"
+      shift 2
+      ;;
+    esac
+    ;;
+  "--maxLD")
+    case "$2" in
+    "")
+      echo "Error: $1 expects an argument"
+      exit 1
+      ;;
+    *)
+      max_local_divergence="$2"
       shift 2
       ;;
     esac
@@ -334,7 +348,7 @@ ls ./iter$j/contig.*.fa >contig_list.txt
 fa_list_file=contig_list.txt
 
 #generate 'haplotypes.fa'
-python $basepath/rm_redundant_genomes.py $fa_list_file $max_divergence . $threads
+python $basepath/rm_redundant_genomes.py $fa_list_file $max_global_divergence . $threads $max_local_divergence
 
 
 #optional ,remove misassembly
@@ -347,7 +361,7 @@ if [[ $rm_misassembly == "True" ]]; then
 
   #remove redundant contigs again because some non-redundant contigs may be caused by misassembly
   ls rmMisassemly/contig.*.fa >contig_list.txt2
-  python $basepath/rm_redundant_genomes.py contig_list.txt2 $max_divergence . $threads
+  python $basepath/rm_redundant_genomes.py contig_list.txt2 $max_global_divergence . $threads $max_local_divergence
   cp haplotypes.fa haplotypes.rm_misassembly.fa
 elif [[ $rm_misassembly == "False" ]]; then
   cp haplotypes.fa haplotypes.rm_misassembly.fa

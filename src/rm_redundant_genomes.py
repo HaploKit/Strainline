@@ -19,7 +19,7 @@ def fasta_len(fa):
 
 def cal_genome_divergence(param):
     ## Full genome/assembly alignment, intra-species asm-to-asm alignment
-    fa1, fa2 = param
+    fa1, fa2,max_local_divergence = param
     paf_out = os.popen("minimap2 -cx asm20 -t 1 {} {} 2>/dev/null".format(fa1, fa2)).read().strip().split('\n')
     divergence = 1.0
     contained = 0  # if it is contained contig or not
@@ -53,18 +53,18 @@ def cal_genome_divergence(param):
     fa1_oh = fa1_len - ovlp_len  # general overhang length of fa1
     fa2_oh = fa2_len - ovlp_len
     min_oh = 5
-    min_local_divergence = 0.001 #pacbio clr
-    # min_local_divergence = 0.01 #for test, maybe for ont TODO
-    if fa1_oh <= min_oh and local_divergence < min_local_divergence:
+    # max_local_divergence = 0.001 #pacbio clr
+    # max_local_divergence = 0.01 #for test, maybe for ont TODO
+    if fa1_oh <= min_oh and local_divergence < max_local_divergence:
         contained = 1  # fa1 is contained contig
-    elif fa2_oh <= min_oh and local_divergence < min_local_divergence:
+    elif fa2_oh <= min_oh and local_divergence < max_local_divergence:
         contained = 2
 
     return (fa1, fa2, global_divergence, local_divergence, contained)
 
 
 if __name__ == '__main__':
-    fa_list_file, min_divergence, outdir, threads = sys.argv[1:]
+    fa_list_file, min_divergence, outdir, threads,max_local_divergence = sys.argv[1:]
     min_divergence = float(min_divergence)
     fa_list = []
     with open(fa_list_file) as fr:
@@ -74,7 +74,7 @@ if __name__ == '__main__':
     final_fastas = {fa: 1 for fa in fa_list}  # the final fasta files after removing redundant genomes
     # print(final_fastas)
     div_out = []
-    params = [(fa1, fa2) for fa1, fa2 in combinations(fa_list, 2)]
+    params = [(fa1, fa2,max_local_divergence) for fa1, fa2 in combinations(fa_list, 2)]
 
     pool = Pool(int(threads))
     res = pool.map(cal_genome_divergence, params, chunksize=1)  # ordered
