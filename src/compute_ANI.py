@@ -11,6 +11,8 @@ def compute_ANI_ij(fa,i,j,outdir):
         j_fa="{}/seq.{}.fa".format(outdir,j)
         print(i_fa)
         os.system("head -{} {}|tail -2 >{}".format(i*2,fa,i,i_fa))
+        print("head -{} {}|tail -2 >{}".format(i*2,fa,i,i_fa))
+
         os.system("head -{} {}|tail -2 >{}".format(j*2,fa,j,j_fa))
         os.system("fastANI -q {} -r {} -o ani.{}.{}.out -t 1 ".format(i_fa,j_fa,i,j))
         # os.system("fastANI -q {} -r {} -o ani.{}.{}.out -t 1 >/dev/null 2>&1".format(i_fa,j_fa,i,j))
