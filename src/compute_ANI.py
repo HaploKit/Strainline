@@ -21,4 +21,5 @@ if __name__ == '__main__':
     fa,i,j,outdir=sys.argv[1:]
     i =int(i)
     j =int(j)
+    os.system("mkdir -p {}".format(outdir))
     compute_ANI_ij(fa,i,j,outdir)
