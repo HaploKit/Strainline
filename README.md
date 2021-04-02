@@ -1,8 +1,15 @@
 # Victor
 ## Description
-**Victor** is a novel approach for full-length *de novo* **vi**ral haplotype re**c**ons**t**ruction from noisy l**o**ng **r**eads
 
-
+Haplotype-resolved assembly of highly diverse virus genomes is critical in prevention, control and 
+treatment of viral diseases. Current methods either only handle accurate short reads, or collapse 
+haplotype-specific variations. Here, we present **Victor**, a novel approach for full-length 
+*de novo* **vi**ral haplotype re**c**ons**t**ruction from noisy l**o**ng **r**eads. 
+Benchmarking experiments on both simulated and real data demonstrate 
+that our approach drastically outperforms others in various aspects such as haplotype coverage, 
+assembly contiguity and accuracy. To our knowledge, our approach is the first one which can accurately 
+and completely reconstruct viral haplotypes at full length and provide abundance estimates from 
+error-prone long reads alone.
 
 ## Installation and dependencies
 
