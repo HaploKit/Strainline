@@ -4,7 +4,7 @@ and unify the strand which all reads are from.
 '''
 import os
 import sys
-import networkx as nx
+# import networkx as nx
 
 from filter_ovlps import filter_ovlp
 

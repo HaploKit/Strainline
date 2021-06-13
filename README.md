@@ -20,10 +20,16 @@ are required before running `daccord`.
 ```
 conda create -n strainline
 conda activate strainline
-conda install -c bioconda minimap2 samtools dazz_db daligner metabat2
+conda install -c bioconda minimap2 spoa samtools dazz_db daligner metabat2
 ```
-Then, install `daccord` and `spoa` following the instructions in their corresponding github pages.
-Make sure that `daccord -h` and `spoa -h` can work successfully.
+Then, install `daccord` following the instructions in its corresponding github pages.
+Make sure that `daccord -h` can work successfully.
+For simplicity, one could download executable program and link `daccord` to the `$HOME/bin/`:
+```
+wget https://github.com/gt1/daccord/releases/download/0.0.10-release-20170526170720/daccord-0.0.10-release-20170526170720-x86_64-etch-linux-gnu.tar.gz
+tar -zvxf daccord-0.0.10-release-20170526170720-x86_64-etch-linux-gnu.tar.gz 
+ln -s daccord-0.0.10-release-20170526170720-x86_64-etch-linux-gnu/bin/daccord $HOME/bin/daccord
+```
 
 ## Running and options
 The input read file is required and the format should be FASTA. Other parameters are optional.

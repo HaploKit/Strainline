@@ -92,13 +92,13 @@ fi
 # wtpoa-cns -t 8 -i out.ctg.lay.gz -fo out.ctg.fa
 
 echo The output assemblies of simulated datasets are located here:
-ls /root/capsule/result/simulated/*/*/haplotypes.*.fa
+ls /root/capsule/data/uploadedResults/simulated/*/*/haplotypes.*.fa
 echo
 echo the output assemblies of real datasets are located here:
-ls /root/capsule/result/real/*/haplotypes.*.fa
+ls /root/capsule/data/uploadedResults/real/*/haplotypes.*.fa
 echo
 echo The output assemblies of simulated datasets[5-HIV, various sequencing coverages] are located here:
-ls /root/capsule/result/simulated/*/5-HIV/*/haplotypes.*.fa
+ls /root/capsule/data/uploadedResults/simulated/*/5-HIV/*/haplotypes.*.fa
 echo
 
 ######### Evaluation #########
