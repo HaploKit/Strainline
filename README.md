@@ -48,14 +48,18 @@ Input:
 
 Options:
 	--minTrimmedLen INT:              Minimum trimmed read length. (default: 1000)
-	--topk INT, -k INT:               Choose top k seed reads. (default: 100)
+	--topk INT, -k INT:               Choose top k seed reads. (default: 50)
 	--minOvlpLen INT:                 Minimum read overlap length. (default: 1000)
 	--minIdentity FLOAT:              Minimum identity of overlaps. (default: 0.99)
 	--minSeedLen INT:                 Minimum seed read length. (default: 3000)
+	--maxOH INT:                      Maximum overhang length allowed for overlaps. (default: 30)
 	--iter INT:                       Number of iterations for contig extension. (default: 2)
-	--minDiv FLOAT:                   Minimum global divergence for merging haplotypes. (default: 0.01)
+	--maxGD FLOAT:                    Maximum global divergence allowed for merging haplotypes. (default: 0.01)
+	--maxLD FLOAT:                    Maximum local divergence allowed for merging haplotypes. (default: 0.001)
+	--maxCO INT:                      Maximum overhang length allowed for contig contains. (default: 5)
 	--minAbun FLOAT:                  Minimum abundance for filtering haplotypes (default: 0.02)
 	--rmMisassembly BOOL:             Break contigs at potential misassembled positions (default: False)
+	--correctErr BOOL:                Perform error correction for input reads (default: True)
 	--threads INT, -t INT:            Number of processes to run in parallel (default: 8).
 	--help, -h:                       Print this help message.
 ```
