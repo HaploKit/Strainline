@@ -49,15 +49,12 @@ min_ovlp_len=1000
 min_identity=0.99
 o=30
 r=0.8
-#max_ovlps=10000 #TODO,reads are already corrected, so maybe use 1000?
 max_ovlps=1000
 min_sread_len=3000
 
 iter=2
 max_global_divergence=0.01
-
-#TODO: add if else
-max_local_divergence=0.001 #for CLR, 0.01 for ONT. #SARS-CoV-2 / (5-HIV different depth) results in paper use 0.01,
+max_local_divergence=0.001 
 maxCO=5
 
 percent_identity=97
@@ -327,7 +324,8 @@ if [[ $correct_err == "True" ]];then
   DBsplit -s256 -x$min_trimmed_len reads.dam # -x: Trimmed DB has reads >= this threshold.
   mkdir tmp || exit
   #HPC.daligner reads.dam -T$threads | bash #return core-dump error if using all cores
-  HPC.daligner reads.dam -e0.85 -P./tmp -T$threads | bash
+  # HPC.daligner reads.dam -e0.85 -P./tmp -T$threads | bash #only conda installed version support '-P'
+  HPC.daligner reads.dam -e0.85 -T$threads | bash
   #  daccord -t$threads reads.las reads.dam >corrected.0.fa
   touch corrected.0.fa
   for las_file in reads.*las;
