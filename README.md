@@ -69,12 +69,12 @@ One can test the `strainline.sh` program using the small PacBio CLR reads file `
 - PacBio CLR reads
 ```
 cd example
-../src/strainline.sh -i reads.fa -o out -p pb -k 20 -t 32
+/abspath/Strainline/src/strainline.sh -i reads.fa -o out -p pb -k 20 -t 32
 ```
 
 - ONT reads
 ```
-../src/strainline.sh -i reads.fa -o out -p ont -t 32
+/abspath/Strainline/src/strainline.sh -i reads.fa -o out -p ont -t 32
 ```
 
 
