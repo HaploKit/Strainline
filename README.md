@@ -1,15 +1,7 @@
 # Strainline
 ## Description
 
-Haplotype-resolved assembly of highly diverse virus genomes is critical in prevention, control and 
-treatment of viral diseases. Current methods either only handle accurate short reads, or collapse 
-haplotype-specific variations. Here, we present **Strainline**, a novel approach for full-length 
-*de novo* viral haplotype reconstruction from noisy long reads. 
-Benchmarking experiments on both simulated and real data demonstrate 
-that our approach drastically outperforms others in various aspects such as haplotype coverage, 
-assembly contiguity and accuracy. To our knowledge, our approach is the first one which can accurately 
-and completely reconstruct viral haplotypes at full length and provide abundance estimates from 
-error-prone long reads alone.
+Haplotype-resolved de novo assembly of highly diverse virus genomes is critical in prevention, control and treatment of viral diseases. Current methods either can handle only relatively accurate short read data, or collapse haplotype-specific variations into consensus sequence. Here, we present Strainline, a novel approach to assemble viral haplotypes from noisy long reads without a reference genome. As a crucial consequence, Strainline is the first approach to provide strain-resolved, full-length de novo assemblies of viral quasispecies from noisy third-generation sequencing data.  Benchmarking experiments on both simulated and real datasets of varying complexity and diversity confirm this novelty, by demonstrating the superiority of Strainline in terms of relevant criteria in comparison with the state of the art.
 
 ## Installation and dependencies
 
