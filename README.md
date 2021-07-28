@@ -22,7 +22,7 @@ conda create -n strainline
 conda activate strainline
 conda install -c bioconda minimap2 spoa samtools dazz_db daligner metabat2
 ```
-Then, one could just download executable program and link `daccord` to the `/path/to/envs/strainline/bin/`. Make sure that `daccord -h` can work successfully.
+Then, one could just download executable program and link `daccord` to the `/path/to/envs/strainline/bin/`. Change the `/path/to/` as your own path to conda. Make sure that `daccord -h` can work successfully.
 ```
 wget https://github.com/gt1/daccord/releases/download/0.0.10-release-20170526170720/daccord-0.0.10-release-20170526170720-x86_64-etch-linux-gnu.tar.gz
 tar -zvxf daccord-0.0.10-release-20170526170720-x86_64-etch-linux-gnu.tar.gz 
