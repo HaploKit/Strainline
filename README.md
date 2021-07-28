@@ -22,13 +22,11 @@ conda create -n strainline
 conda activate strainline
 conda install -c bioconda minimap2 spoa samtools dazz_db daligner metabat2
 ```
-Then, install `daccord` following the instructions in its corresponding github pages.
-Make sure that `daccord -h` can work successfully.
-For simplicity, one could just download executable program and link `daccord` to the `$HOME/bin/`:
+Then, one could just download executable program and link `daccord` to the `/path/to/envs/strainline/bin/`. Make sure that `daccord -h` can work successfully.
 ```
 wget https://github.com/gt1/daccord/releases/download/0.0.10-release-20170526170720/daccord-0.0.10-release-20170526170720-x86_64-etch-linux-gnu.tar.gz
 tar -zvxf daccord-0.0.10-release-20170526170720-x86_64-etch-linux-gnu.tar.gz 
-ln -s daccord-0.0.10-release-20170526170720-x86_64-etch-linux-gnu/bin/daccord $HOME/bin/daccord
+ln -fs $PWD/daccord-0.0.10-release-20170526170720-x86_64-etch-linux-gnu/bin/daccord /path/to/envs/strainline/bin/daccord
 ```
 
 ## Running and options
@@ -37,11 +35,11 @@ Please run `strainline.sh -h` to get details of optional parameters setting.
 Before running Strainline, please read through the following basic parameter settings,
 which may be helpful to achieve better assemblies. 
 ```
-Usage: strainline.sh [options] -i reads.fasta -o out/ -p sequencingPlatform
+Usage: strainline.sh [options] -i reads.fasta -o out -p sequencingPlatform
 
 Input:
 	reads.fasta:                      fasta file of input long reads.
-	out/:                             directory where to output the results.
+	out:                             directory where to output the results.
 	sequencingPlatform:               long read sequencing platform: PacBio (-p pb) or Oxford Nanopore (-p ont)
 
 Options:
