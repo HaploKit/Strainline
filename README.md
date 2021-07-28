@@ -63,7 +63,7 @@ Options:
 
 ## Examples
 
-One can test the `strainline.sh` program using the small PacBio CLR reads file `example/reads.fa`.
+One can test the `strainline.sh` program using the small PacBio CLR reads file `example/reads.fa`. Please use the absolute path of `strainline.sh`.
 - PacBio CLR reads
 ```
 cd example
