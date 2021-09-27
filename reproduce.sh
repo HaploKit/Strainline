@@ -27,7 +27,7 @@ $srcpath/strainline.sh -i $input -o out -p pb -k 50 --maxGD 0.02 --maxLD 0.01 --
 
 # simulated data, pacbio clr, 6-polio
 input=/root/capsule/data/simulated/clr/6-polio/reads.fa.gz
-$srcpath/strainline.sh -i $input -o out -p pb -k 100 --maxOH 50 -t $threads
+$srcpath/strainline.sh -i $input -o out -p pb -k 100 --minIdentity 0.995 -t $threads
 
 # simulated data, pacbio clr, 10-HCV
 input=/root/capsule/data/simulated/clr/10-HCV/reads.fa.gz

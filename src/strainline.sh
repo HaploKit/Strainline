@@ -18,7 +18,7 @@ function print_help() {
   echo ""
   echo "	Options:"
   echo "	--minTrimmedLen INT:              Minimum trimmed read length. (default: 1000)"
-  echo "	--topk INT, -k INT:               Choose top k seed reads. (default: 50)"
+  echo "	--topk INT, -k INT:               Choose top k seed reads. (default: 100)"
   echo "	--minOvlpLen INT:                 Minimum read overlap length. (default: 1000)"
   echo "	--minIdentity FLOAT:              Minimum identity of overlaps. (default: 0.99)"
   echo "	--minSeedLen INT:                 Minimum seed read length. (default: 3000)"
@@ -31,6 +31,7 @@ function print_help() {
   echo "	--minAbun FLOAT:                  Minimum abundance for filtering haplotypes (default: 0.02)"
   echo "	--rmMisassembly BOOL:             Break contigs at potential misassembled positions (default: False)"
   echo "	--correctErr BOOL:                Perform error correction for input reads (default: True)"
+  echo "	--dsim FLOAT:                     Look for alignments with this percent similarity in Daligner. (default: 0.85)"
   echo "	--threads INT, -t INT:            Number of processes to run in parallel (default: 8)."
   echo "	--help, -h:                       Print this help message."
   exit 1
@@ -43,7 +44,7 @@ outdir="out/"
 
 min_trimmed_len=1000
 
-topk=50
+topk=100
 platform="pb"
 min_ovlp_len=1000
 min_identity=0.99
@@ -61,6 +62,7 @@ percent_identity=97
 min_abun=0.02 #
 rm_misassembly="False"
 correct_err="True"
+dsim=0.85
 
 #Print help if no argument specified
 if [[ "$1" == "" ]]; then
@@ -271,6 +273,18 @@ while [[ "$1" != "" ]]; do
       ;;
     esac
     ;;
+  "--dsim")
+    case "$2" in
+    "")
+      echo "Error: $1 expects an argument"
+      exit 1
+      ;;
+    *)
+      dsim="$2"
+      shift 2
+      ;;
+    esac
+    ;;
   "--threads" | "-t")
     case "$2" in
     "")
@@ -324,7 +338,7 @@ if [[ $correct_err == "True" ]];then
   DBsplit -s256 -x$min_trimmed_len reads.dam # -x: Trimmed DB has reads >= this threshold.
   mkdir tmp || exit
   #HPC.daligner reads.dam -T$threads | bash #return core-dump error if using all cores
-  HPC.daligner reads.dam -e0.85 -P./tmp -T$threads | bash #only conda installed version support '-P'
+  HPC.daligner reads.dam -e$dsim -P./tmp -T$threads | bash #only conda installed version support '-P'
   # HPC.daligner reads.dam -e0.85 -T$threads | bash
   #  daccord -t$threads reads.las reads.dam >corrected.0.fa
   touch corrected.0.fa
