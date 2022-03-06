@@ -77,3 +77,4 @@ cd example
 
 
 ## Citation
+Luo, X., Kang, X. & Schönhuth, A. Strainline: full-length de novo viral haplotype reconstruction from noisy long reads. Genome Biol 23, 29 (2022). https://doi.org/10.1186/s13059-021-02587-6
