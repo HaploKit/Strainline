@@ -315,7 +315,7 @@ if [[ $input_fa == "" ]]; then
   exit 1
 fi
 
-basepath=$(dirname $0)
+basepath="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
 ##############################################
 ######## Step1: read error correction ########
