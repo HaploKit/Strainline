@@ -8,10 +8,10 @@ Haplotype-resolved de novo assembly of highly diverse virus genomes is critical 
 Strainline relies on the following dependencies:
 - [minimap2](https://github.com/lh3/minimap2)
 - [daccord](https://github.com/gt1/daccord)
-- [samtools](http://www.htslib.org/)
+- [samtools](http://www.htslib.org/) >= v1.9
 - [spoa](https://github.com/rvaser/spoa)
 - `jgi_summarize_bam_contig_depths` program from [metabat2](https://bitbucket.org/berkeleylab/metabat/src/master/)
-- Python3
+- Python v3.6+
 
 
 To run Strainline, firstly, it is recommended to install the dependencies through [Conda](https://docs.conda.io/en/latest/).
