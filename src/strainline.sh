@@ -331,7 +331,15 @@ mkdir -p $outdir
 input_fa=$(readlink -f $input_fa)
 cd $outdir || exit
 
-ln -fs $input_fa reads.fasta
+# ln -fs $input_fa reads.fasta 
+
+# convert input fasta into wrapped fasta (60 bases per line) 
+# to avoid issue: 'Fasta line is too long'
+perl -e ' $/=">";open A,$ARGV[0] or die $!; <A>; 
+          while(<A>){chomp;my@a=split/\n/;print ">$a[0]\n";my$seq=join("",@a[1..$#a]);
+          my$len=length($seq);my $L=int $len/60;$L+=1 if $L*60<$len;
+          for(my$i=0;$i<$L;$i++){print substr($seq,$i*60,60);print "\n";}
+          }close A;' $input_fa >reads.fasta 
 
 if [[ $correct_err == "True" ]];then
   fasta2DAM reads.dam reads
