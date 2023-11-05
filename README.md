@@ -29,6 +29,8 @@ tar -zvxf daccord-0.0.10-release-20170526170720-x86_64-etch-linux-gnu.tar.gz
 ln -fs $PWD/daccord-0.0.10-release-20170526170720-x86_64-etch-linux-gnu/bin/daccord /path/to/envs/strainline/bin/daccord
 ```
 
+You can also install with docker directly, please see the end.
+
 ## Running and options
 The input read file is required and the format should be FASTA. Other parameters are optional.
 Please run `strainline.sh -h` to get details of optional parameters setting.
@@ -75,6 +77,21 @@ cd example
 /abspath/Strainline/src/strainline.sh -i reads.fa -o out -p ont -t 32
 ```
 
+## Installation with docker and example test
+
+```
+git clone https://github.com/Wenhai-Zhang/Strainline.git
+cd Strainline/docker
+docker build -t strainline .
+
+cd ../example
+
+# 1. run directly in your path with data
+docker run -v $PWD:$PWD -w $PWD strainline:v1 strainline.sh -i reads.fa -o out -p pb -k 20 -t 16
+# 2. start an interactive docker container session and run in your path with data
+docker run -it --rm -v $PWD:/wd -w /wd -v /var/run/docker.sock:/var/run/docker.sock strainline:v1 /bin/bash
+strainline.sh -i reads.fa -o out -p pb -k 20 -t 16
+```
 
 ## Citation
 Luo, X., Kang, X. & Schönhuth, A. Strainline: full-length de novo viral haplotype reconstruction from noisy long reads. Genome Biol 23, 29 (2022). https://doi.org/10.1186/s13059-021-02587-6
