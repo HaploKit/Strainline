@@ -8,7 +8,7 @@ Haplotype-resolved de novo assembly of highly diverse virus genomes is critical 
 Strainline relies on the following dependencies:
 - [minimap2](https://github.com/lh3/minimap2)
 - [daccord](https://github.com/gt1/daccord)
-- [samtools](http://www.htslib.org/) >= v1.9
+- [samtools](http://www.htslib.org/)
 - [spoa](https://github.com/rvaser/spoa)
 - `jgi_summarize_bam_contig_depths` program from [metabat2](https://bitbucket.org/berkeleylab/metabat/src/master/)
 - Python v3.6+
@@ -80,16 +80,16 @@ cd example
 ## Installation with docker and example test
 
 ```
-git clone https://github.com/Wenhai-Zhang/Strainline.git
+git clone https://github.com/HaploKit/Strainline.git
 cd Strainline/docker
 docker build -t strainline .
 
 cd ../example
 
 # 1. run directly in your path with data
-docker run -v $PWD:$PWD -w $PWD strainline:v1 strainline.sh -i reads.fa -o out -p pb -k 20 -t 16
+docker run -v $PWD:$PWD -w $PWD strainline strainline.sh -i reads.fa -o out -p pb -k 20 -t 16
 # 2. start an interactive docker container session and run in your path with data
-docker run -it --rm -v $PWD:/wd -w /wd -v /var/run/docker.sock:/var/run/docker.sock strainline:v1 /bin/bash
+docker run -it --rm -v $PWD:/wd -w /wd -v /var/run/docker.sock:/var/run/docker.sock strainline /bin/bash
 strainline.sh -i reads.fa -o out -p pb -k 20 -t 16
 ```
 
