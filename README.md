@@ -87,9 +87,9 @@ docker build -t strainline .
 cd ../example
 
 # 1. run directly in your path with data
-docker run -v $PWD:$PWD -w $PWD strainline:v1 strainline.sh -i reads.fa -o out -p pb -k 20 -t 16
+docker run -v $PWD:$PWD -w $PWD strainline strainline.sh -i reads.fa -o out -p pb -k 20 -t 16
 # 2. start an interactive docker container session and run in your path with data
-docker run -it --rm -v $PWD:/wd -w /wd -v /var/run/docker.sock:/var/run/docker.sock strainline:v1 /bin/bash
+docker run -it --rm -v $PWD:/wd -w /wd -v /var/run/docker.sock:/var/run/docker.sock strainline /bin/bash
 strainline.sh -i reads.fa -o out -p pb -k 20 -t 16
 ```
 
