@@ -344,9 +344,10 @@ perl -e ' $/=">";open A,$ARGV[0] or die $!; <A>;
 if [[ $correct_err == "True" ]];then
   fasta2DAM reads.dam reads
   DBsplit -s256 -x$min_trimmed_len reads.dam # -x: Trimmed DB has reads >= this threshold.
-  mkdir tmp || exit
-  #HPC.daligner reads.dam -T$threads | bash #return core-dump error if using all cores
-  HPC.daligner reads.dam -e$dsim -P./tmp -T$threads | bash #only conda installed version support '-P'
+  # mkdir tmp || exit
+  # #HPC.daligner reads.dam -T$threads | bash #return core-dump error if using all cores
+  # HPC.daligner reads.dam -e$dsim -P./tmp -T$threads | bash #only conda installed version support '-P'
+  HPC.daligner reads.dam -e$dsim -T$threads | bash
   # HPC.daligner reads.dam -e0.85 -T$threads | bash
   #  daccord -t$threads reads.las reads.dam >corrected.0.fa
   touch corrected.0.fa
